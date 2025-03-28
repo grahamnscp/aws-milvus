@@ -1,0 +1,22 @@
+# Params.sh
+
+# params used in deployment scripts
+
+# aws access
+SSH_USERNAME=ec2-user
+SSH_KEY=/Users/myuser/.ssh/awsmyuser
+SSH_OPTS="-o StrictHostKeyChecking=no -i $SSH_KEY"
+
+# rke2
+RKE2_VERSION="v1.31.5+rke2r1"
+RKE2_TOKEN="jointoken"
+
+# downstream cluster1
+STORAGE_DEV1="nvme1n1"
+STORAGE_DEV2="nvme2n1"
+
+# SUSE Application Collection
+APPCOL_USER="my@emaildomain.com"
+APPCOL_TOKEN="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX=="
+
+

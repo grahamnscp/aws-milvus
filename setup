@@ -1,0 +1,35 @@
+#!/bin/bash
+
+source ./utils/utils.sh
+
+LogStarted "=====================================> Provisioning infra via terraform.."
+
+cd tf
+terraform apply -auto-approve
+cd ..
+
+Log "sleeping to wait for instances to initialise.."
+sleep 10
+LogElapsedDuration
+
+Log "===========================> Cleaning up from previous run.."
+bash 00-clean-local-dir
+
+Log "===========================> Installing RKE2 cluster.."
+bash 01-install-rke2.sh
+LogElapsedDuration
+
+Log "===========================> Installing longhorn.."
+bash 02-install-longhorn.sh
+LogElapsedDuration
+
+Log "===========================> Installing milvus.."
+bash 03-install-milvus.sh
+LogElapsedDuration
+
+# --------------------------------------
+LogElapsedDuration
+LogCompleted "Done."
+
+# tidy up
+exit 0

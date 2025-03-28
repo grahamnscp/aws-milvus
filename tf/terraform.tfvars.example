@@ -1,0 +1,49 @@
+# aws-cli Profile to use
+aws_profile = "default"
+
+# AWS region
+aws_region = "us-east-1"
+
+# tags to use on the AWS resources (default_tags)
+aws_tags = {
+     Owner          = "myuser"
+     expirationDate = "20250401"
+     Purpose        = "DevTest"
+}
+
+# Prefix name that we prepend to the resource names
+prefix = "my"
+
+# route53 hosted zone
+route53_zone_id   = "XXXXXXXXXXXXXXXXXXXXX"
+route53_domain    = "mydomain.com"
+route53_subdomain = "db"
+
+# AWS EC2 instance type
+# t3.small      2 vcpu -  2GB mem - $0.0208/hr
+# t3.medium     2 vcpu -  4GB mem - $0.0418/hr
+# t3.large      2 vcpu -  8GB mem - $0.0835/hr
+# t3.xlarge     4 vcpu - 16GB mem - $0.1670/hr
+# t3.2xlarge    8 vcpu - 32GB mem - $0.3341/hr
+aws_instance_type_master = "t3.xlarge"
+master_count = "3"
+aws_instance_type_agent = "t3.xlarge"
+agent_count = "3"
+
+# AWS EC2 ami
+# Active images: https://pint.suse.com/?resource=images&search=sles-15-sp6&csp=amazon&region=us-east-1&state=active
+# sles sp6 ami (amazon/suse-sles-15-sp6-v20241113-hvm-ssd-x86_64)
+aws_ami = "ami-0d9f9dbae7b9a241d"
+
+# AWS EC2 root instance volume size (in GB)
+volume_size = "200"
+volume_size_second_disk = "200"
+#volume_size_third_disk = "400"
+
+# Existing AWS SSH key-pair name - https://docs.aws.amazon.com/console/ec2/key-pairs
+aws_key_name = "awsmyuser"
+
+# ingress CIDRs
+ip_cidr_me = "11.111.11.111/32"
+ip_cidr_work = "22.22.22.222/32"
+
