@@ -16,15 +16,16 @@ Log "===========================> Cleaning up from previous run.."
 bash 00-clean-local-dir
 
 Log "===========================> Installing RKE2 cluster.."
-bash 01-install-rke2.sh
+time bash 01-install-rke2.sh
 LogElapsedDuration
 
 Log "===========================> Installing longhorn.."
-bash 02-install-longhorn.sh
+time bash 02-install-longhorn.sh
 LogElapsedDuration
 
 Log "===========================> Installing milvus.."
-bash 03-install-milvus.sh
+time bash 03-install-milvus.sh
+#time bash 04-milvus-oss.sh
 LogElapsedDuration
 
 # --------------------------------------
