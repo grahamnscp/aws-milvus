@@ -23,9 +23,13 @@ Log "===========================> Installing longhorn.."
 time bash 02-install-longhorn.sh
 LogElapsedDuration
 
+#Log "===========================> Installing kafka.."
+#time bash 03-install-kafka.sh
+#LogElapsedDuration
+
 Log "===========================> Installing milvus.."
 time bash 03-install-milvus.sh
-#time bash 04-milvus-oss.sh
+#time bash 03-milvus-oss.sh
 LogElapsedDuration
 
 # --------------------------------------

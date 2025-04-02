@@ -11,21 +11,6 @@ Log "\_Authenticating local helm cli to SUSE Application Collection registry.."
 helm registry login dp.apps.rancher.io/charts -u $APPCOL_USER -p $APPCOL_TOKEN
 
 # ----------------------------
-# install cert manager 
-#Log "\_Creating cert-manager namespace.."
-#kubectl --kubeconfig=./local/admin.conf create namespace cert-manager
-
-#Log "\_Creating application-collection secret for cert-manager.."
-#kubectl --kubeconfig=./local/admin.conf create secret docker-registry application-collection --docker-server=dp.apps.rancher.io --docker-username=$APPCOL_USER --docker-password=$APPCOL_TOKEN -n cert-manager
-
-#Log "\_Installing cert-manager.."
-#helm upgrade --kubeconfig=./local/admin.conf --install cert-manager \
-#  oci://dp.apps.rancher.io/charts/cert-manager \
-#  -n cert-manager \
-#  --set crds.enabled=true \
-#  --set 'global.imagePullSecrets[0].name'=application-collection
-
-# ----------------------------
 Log "\_Creating suse-ai namespace.."
 kubectl --kubeconfig=./local/admin.conf create namespace suse-ai
 
@@ -74,6 +59,7 @@ kafka:
   enabled: false
 MV1EOF
 
+# note: suse apache-kafka chart with longhorn needs fstype to be xfs to avoid Lost+Found file issue
 cat << MVEOF >./local/milvus-values.yaml
 global:
   imagePullSecrets:
@@ -119,7 +105,7 @@ Log " \_Installing milvus database.."
 helm upgrade --kubeconfig=./local/admin.conf \
   --install milvus oci://dp.apps.rancher.io/charts/milvus \
   -n suse-ai \
-  -f ./local/milvus-values-nokafka.yaml \
+  -f ./local/milvus-values.yaml \
   --set ignore-formatted=true \
   --timeout=5m
 
